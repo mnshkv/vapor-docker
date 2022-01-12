@@ -5,7 +5,11 @@ func routes(_ app: Application) throws {
         return "It works!"
     }
 
-    app.get("hello") { req -> String in
-        return "Hello, world!"
+    app.get("hello", ":name") { req -> String in
+        if let name = req.parameters.get("name") {
+            return "Hello, \(name)"
+        }
+
+        return "name is not find"
     }
 }
